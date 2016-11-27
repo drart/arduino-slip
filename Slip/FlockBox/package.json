@@ -1,0 +1,35 @@
+{
+    "name": "flockbox-demo",
+    "main": "index.js",
+    "version": "0.0.1",
+    "description": "Example of how to use osc.js in Node.js using Serial over IP (SLIP).",
+    "author": "Adam Tindale",
+    "homepage": "http://www.adamtindale.com/",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/drart/arduino-slip.git"
+    },
+    "licenses": [
+        {
+          "type": "MIT",
+          "url": "http://opensource.org/licenses/MIT"
+        },
+        {
+          "type": "GPL",
+          "url": "http://opensource.org/licenses/GPL-3.0"
+        }
+    ],
+    "keywords": [
+        "Open Sound Control",
+        "OSC",
+        "sound",
+        "audio",
+        "music",
+        "Flocking"
+    ],
+    "readmeFilename": "README.md",
+    "dependencies": {
+        "osc": ">=1.0.1",
+	"flocking": "colinbdclark/flocking#midi-improvements" 
+    }
+}

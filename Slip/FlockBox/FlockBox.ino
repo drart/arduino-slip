@@ -1,5 +1,5 @@
 
-#include <OSCMessage.h>
+#include <OSCBundle.h>
 
 #if defined(CORE_TEENSY)
 #include <SLIPEncodedUSBSerial.h>
@@ -19,17 +19,19 @@ void setup() {
 
 void loop() {
 
-  String address = String("/knobs/0");
-  int addressLength = address.length() + 1;
-  char addressBuffer[addressLength];
+    OSCBundle bndl;
+    bndl.add("/fader/0").add( analogRead(0) );
+    bndl.add("/fader/1").add( analogRead(1) );
+    bndl.add("/fader/2").add( analogRead(2) );
+    bndl.add("/fader/3").add( analogRead(3) );
+    bndl.add("/fader/4").add( analogRead(4) );
+    bndl.add("/fader/5").add( analogRead(5) );
+    bndl.add("/fader/6").add( analogRead(6) );
 
-  address.toCharArray(addressBuffer, addressLength);
-  OSCMessage msg(addressBuffer);
-  msg.add( analogRead(A0)  );
-
-  msg.send(SLIPSerial);
-  SLIPSerial.endPacket();
-  msg.empty();
+    SLIPSerial.beginPacket();
+        bndl.send(SLIPSerial); // send the bytes to the SLIP stream
+    SLIPSerial.endPacket(); // mark the end of the OSC Packet
+    bndl.empty(); // empty the bundle to free room for a new one
   
   delay(1000);
   
